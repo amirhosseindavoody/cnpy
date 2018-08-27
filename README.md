@@ -53,3 +53,8 @@ struct NpyArray {
 ```
 
 See [example1.cpp](example1.cpp) for examples of how to use the library. example1 will also be build during cmake installation.
+
+
+# GNU make
+
+The file depends on `zlib` library, so in the linking process we need to link `libz.dylib` to the executable file. This is done in `makefile` by adding `-lz` to the end of linking command.

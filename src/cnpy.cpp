@@ -2,7 +2,6 @@
 //Released under MIT License
 //license available in LICENSE file, or at http://www.opensource.org/licenses/mit-license.php
 
-#include"cnpy.h"
 #include<complex>
 #include<cstdlib>
 #include<algorithm>
@@ -11,6 +10,9 @@
 #include<stdint.h>
 #include<stdexcept>
 #include <regex>
+#include <zlib.h>
+
+#include"cnpy.h"
 
 char cnpy::BigEndianTest() {
     int x = 1;

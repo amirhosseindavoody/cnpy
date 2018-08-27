@@ -1,9 +1,11 @@
-#include"cnpy.h"
 #include<complex>
 #include<cstdlib>
 #include<iostream>
 #include<map>
 #include<string>
+#include<zlib.h>
+
+#include"cnpy.h"
 
 const int Nx = 128;
 const int Ny = 64;
@@ -11,6 +13,7 @@ const int Nz = 32;
 
 int main()
 {
+  {
     //set random seed so that result is reproducible (for testing)
     srand(0);
     //create random data
@@ -52,4 +55,23 @@ int main()
     double* mv1 = arr_mv1.data<double>();
     assert(arr_mv1.shape.size() == 1 && arr_mv1.shape[0] == 1);
     assert(mv1[0] == myVar1);
+  }
+
+  {
+    //load the entire npz file
+    cnpy::npz_t test_npz = cnpy::npz_load("test_data.npz");
+
+    cnpy::NpyArray arr = test_npz["arr_0"];
+
+    typedef unsigned long data_t;
+
+    data_t *loaded_data = arr.data<data_t>();
+    for (int i=0; i<arr.shape[0]; ++i){
+      std::cout << loaded_data[i] << std::endl;
+    }
+
+  }
+
+  std::cout << "the end!!!" << std::endl;
+  return 0;
 }
