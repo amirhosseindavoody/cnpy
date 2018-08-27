@@ -58,6 +58,10 @@ int main()
   }
 
   {
+
+    std::cout << std::endl
+              << "testing npz_load:" << std::endl;
+
     //load the entire npz file
     cnpy::npz_t test_npz = cnpy::npz_load("test_data.npz");
 
@@ -69,7 +73,22 @@ int main()
     for (int i=0; i<arr.shape[0]; ++i){
       std::cout << loaded_data[i] << std::endl;
     }
+  }
 
+  {
+    std::cout << std::endl
+              << "testing npy_load:" << std::endl;
+
+    //load the entire npz file
+    cnpy::NpyArray arr = cnpy::npy_load("test_data.npy");
+
+    typedef unsigned long data_t;
+
+    data_t *loaded_data = arr.data<data_t>();
+    for (int i = 0; i < arr.shape[0]; ++i)
+    {
+      std::cout << loaded_data[i] << std::endl;
+    }
   }
 
   std::cout << "the end!!!" << std::endl;

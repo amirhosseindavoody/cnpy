@@ -7,3 +7,6 @@ print(type(a[0]))
 
 filename = 'test_data.npz'
 np.savez(filename, a)
+
+filename = 'test_data.npy'
+np.save(filename, a, allow_pickle=False)
